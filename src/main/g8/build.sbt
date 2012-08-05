@@ -1,26 +1,26 @@
 name := "$name$"
 
-version := "0.1"
+version := "0.0.1"
 
-organization := "$organization$"
+organization := "$package$"
 
 scalaVersion := "2.9.1"
 
-seq(webSettings :_*)
+resolvers ++= Seq("snapshots"     at "http://oss.sonatype.org/content/repositories/snapshots",
+                "releases"        at "http://oss.sonatype.org/content/repositories/releases"
+                )
 
-resolvers ++= Seq("snapshots" at "http://oss.sonatype.org/content/repositories/snapshots",
-                  "releases"  at "http://oss.sonatype.org/content/repositories/releases")
+seq(com.github.siasia.WebPlugin.webSettings :_*)
+
+scalacOptions ++= Seq("-deprecation", "-unchecked")
 
 libraryDependencies ++= {
-  val liftVersion = "$lift_version$"
+  val liftVersion = "2.5-SNAPSHOT"
   Seq(
-  "net.liftweb" %% "lift-webkit" % liftVersion % "compile",
-  "org.eclipse.jetty" % "jetty-webapp" % "8.0.1.v20110908" % "container",
-  "com.h2database" % "h2" % "1.2.138",
-  "org.specs2" %% "specs2" % "1.10" % "test",
-  "ch.qos.logback" % "logback-classic" % "0.9.26"
+    "net.liftweb"       %% "lift-webkit"        % liftVersion        % "compile",
+    "net.liftmodules"   %% "lift-jquery-module" % (liftVersion + "-1.0-SNAPSHOT"),
+    "org.eclipse.jetty" % "jetty-webapp"        % "7.5.4.v20111024"  % "container; test",
+    "ch.qos.logback"    % "logback-classic"     % "1.0.6",
+    "org.specs2"        %% "specs2"             % "1.11"             % "test"
   )
 }
-
-// append -deprecation to the options passed to the Scala compiler
-scalacOptions += "-deprecation"
