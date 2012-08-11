@@ -10,9 +10,25 @@ And you're up and running in no time!
 
 ## Working on the template
 
-Giter8 version 0.5 supports running templates locally like this: 
+### Prerequisites 
 
-    g8 file:///Users/mads379/dev/projects/open-source/lift.g8/
+- [Conscript](https://github.com/n8han/conscript) 
+- [Giter8](https://github.com/n8han/giter8)
 
-Using your own path to this project of course. Not that it uses git so 
-you will have to commit you changes before it applies them. 
+Install Conscript[1]
+
+	curl https://raw.github.com/n8han/conscript/master/setup.sh | sh
+
+Install giter8
+
+	cs n8han/giter8
+
+### Testing
+
+Now, to generate the template and start a SBT session in the
+generated project simply run: 
+
+	sh ./test
+	
+**NOTE** You have to commit your changes before giter8 applies them
+when generating your files.
